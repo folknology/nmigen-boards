@@ -39,11 +39,11 @@ class IceCorePlatform(LatticeICE40Platform):
             attrs=Attrs(IO_STANDARD="SB_LVCMOS", PULLUP=1)
         ),
 
-        *SPIFlashResources(0, cs="71", clk="70", mosi="67", miso="68", wp="64", hold="63",
+        *SPIFlashResources(0, cs_n="71", clk="70", copi="67", cipo="68", wp_n="64", hold_n="63",
            attrs=Attrs(IO_STANDARD="SB_LVCMOS")
         ),
 
-        SDRAMResource(0, clk="129", cke="128", cs="113", we="107",  ras="112", cas="110",
+        SDRAMResource(0, clk="129", cke="128", cs_n="113", we_n="107",  ras_n="112", cas_n="110",
             dqm="93 94", ba=None,
             a="117 119 121 124 130 125 122 120 118 116 115 114",
             dq="78 79 80 81 82 83 84 85 87 88 90 91 95 96 97 98",
