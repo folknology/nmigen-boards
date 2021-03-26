@@ -27,9 +27,9 @@ class IceCorePlatform(LatticeICE40Platform):
         Resource("led_r", 0, Pins("56", dir="o"), Attrs(IO_STANDARD="SB_LVCMOS", PULLUP=1)),
 
         Resource("sck", 0, Pins("70", dir="i"), Attrs(IO_STANDARD="SB_LVCMOS")),
-        Resource("mosi", 0, Pins("67", dir="i"), Attrs(IO_STANDARD="SB_LVCMOS")),
+        Resource("mosi", 0, Pins("67", dir="o"), Attrs(IO_STANDARD="SB_LVCMOS")),
         Resource("cs", 0, Pins("71", dir="i"), Attrs(IO_STANDARD="SB_LVCMOS")),
-        Resource("miso", 0, Pins("68", dir="o"), Attrs(IO_STANDARD="SB_LVCMOS")),
+        Resource("miso", 0, Pins("68", dir="i"), Attrs(IO_STANDARD="SB_LVCMOS")),
 
         # Buttons overlap with Blue & Green leds in addition to PMOD 10
         *ButtonResources(pins="49 52", invert=True, attrs=Attrs(IO_STANDARD="SB_LVCMOS")),
