@@ -31,6 +31,11 @@ class IceCorePlatform(LatticeICE40Platform):
         Resource("cs", 0, Pins("71", dir="i"), Attrs(IO_STANDARD="SB_LVCMOS")),
         Resource("miso", 0, Pins("68", dir="i"), Attrs(IO_STANDARD="SB_LVCMOS")),
 
+        Resource("dsck", 0, Pins("76", dir="i"), Attrs(IO_STANDARD="SB_LVCMOS")),
+        Resource("dd0", 0, Pins("73", dir="i"), Attrs(IO_STANDARD="SB_LVCMOS")),
+        Resource("dcs", 0, Pins("75", dir="i"), Attrs(IO_STANDARD="SB_LVCMOS")),
+        Resource("dd1", 0, Pins("74", dir="i"), Attrs(IO_STANDARD="SB_LVCMOS")),
+
         # Buttons overlap with Blue & Green leds in addition to PMOD 10
         *ButtonResources(pins="49 52", invert=True, attrs=Attrs(IO_STANDARD="SB_LVCMOS")),
 
@@ -58,9 +63,11 @@ class IceCorePlatform(LatticeICE40Platform):
     ]
     connectors = []
 
-    def toolchain_program(self, products, name, port):
+    def toolchain_program(self, products, name, **kwargs):
+        device = os.environ.get("DEVICE", "/dev/ttyACM0")
+        print("Programming ", device)
         with products.extract("{}.bin".format(name)) as bitstream_filename:
-            subprocess.check_call(["cp", bitstream_filename, port])
+            subprocess.check_call(["cp", bitstream_filename, device])
 
 
 if __name__ == "__main__":
