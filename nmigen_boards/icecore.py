@@ -19,8 +19,8 @@ class IceCorePlatform(LatticeICE40Platform):
             Clock(25e6), Attrs(IO_STANDARD="SB_LVCMOS")
         ),
 
-        *LEDResources(pins="49 52 55 56", attrs=Attrs(IO_STANDARD="SB_LVCMOS", PULLUP=1)),
-        # Color aliases, pullups helps when signals used beyoud driving leds to get good logic high
+        *LEDResources(pins="49 52 55 56", invert=True, attrs=Attrs(IO_STANDARD="SB_LVCMOS", PULLUP=1)),
+        # Color aliases, pullups helps when signals used beyond driving leds to get good logic high
         Resource("led_b", 0, Pins("49", dir="o"), Attrs(IO_STANDARD="SB_LVCMOS", PULLUP=1)),
         Resource("led_g", 0, Pins("52", dir="o"), Attrs(IO_STANDARD="SB_LVCMOS", PULLUP=1)),
         Resource("led_y", 0, Pins("55", dir="o"), Attrs(IO_STANDARD="SB_LVCMOS", PULLUP=1)),
@@ -37,7 +37,7 @@ class IceCorePlatform(LatticeICE40Platform):
         Resource("dd1", 0, Pins("74", dir="i"), Attrs(IO_STANDARD="SB_LVCMOS")),
 
         # Buttons overlap with Blue & Green leds in addition to PMOD 10
-        *ButtonResources(pins="49 52", invert=True, attrs=Attrs(IO_STANDARD="SB_LVCMOS")),
+        *ButtonResources(pins="49 52", invert=True, attrs=Attrs(IO_STANDARD="SB_LVCMOS", PULLUP=1)),
 
         UARTResource(0,
             rx="61", tx="62",
